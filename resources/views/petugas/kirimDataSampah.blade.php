@@ -89,11 +89,6 @@
             margin-top: 0;
             margin-bottom: 30px;
         }
-        #ss{
-            display: flex;
-            justify-content: right;
-            align-items: center;
-        }
         
         /* Formulir */
         form {
@@ -154,8 +149,9 @@
                 
                 <h2>Data Sampah</h2>
 
-                <form action="/petugas/kirimDataSampah" method="POST">
+                <form action="/petugas/kelolaDataSampah" method="POST">
                     @csrf
+                    
                     <input type="text" placeholder="Data 1">
 
                     <input type="text" placeholder="Data 2">
@@ -172,11 +168,11 @@
                     <textarea placeholder="Deskripsi/Detail"></textarea>
 
                     <div class="button-group">
-                        <button type="submit" style="background-color: #007bff; color: white; border: none;">Edit</button>
+                        <button type="submit" style="background-color: #007bff; color: white; border: none;">
+                            Simpan
+                        </button>
                     </div>
-                    <a id="ss" href="/petugas/kelolaDataSampah" class="submit">Kembali</a>
                 </form>
-                
 
             </div>
         </div>

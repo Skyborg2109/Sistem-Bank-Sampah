@@ -107,7 +107,13 @@
     
     <h3>Daftar Akun Baru</h3>
 
-    {{-- <form action="Admin/dashboard" method="POST">  --}}
+    <div style="width: 150px; height: 100px; border: 1px solid #ccc; margin: 0 auto 30px auto; background-color: #f9f9f9; display: flex; justify-content: center; align-items: center; font-size: 12px; color: #888;">
+        [GAMBAR]
+    </div>
+
+    
+    {{-- <form action="Admin/dashboard" method="POST"> --}}
+    {{-- <form action="warga/dashboard" method="POST"> --}}
     <form action="petugas/dashboard" method="POST"> 
         @csrf
         <table>

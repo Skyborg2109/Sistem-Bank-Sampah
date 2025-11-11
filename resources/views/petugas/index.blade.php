@@ -140,26 +140,29 @@
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <div class="sidebar-item top-left-box"></div> 
-        <div class="sidebar-item">&#9776;</div> 
-        <div class="sidebar-item">&#x2302;</div> 
-        <div class="sidebar-item">&#x1F465;</div> 
-        <div class="sidebar-item">&#x1F4CB;</div> 
-    </div>
+
     <div class="header">
         <div class="header-left">
-            <div class="placeholder"></div> </div>
+            <div class="placeholder">
+        </div> </div>
         <div class="header-right">
-            <span class="icon">&#x1F514;</span> <div class="input-box"></div> <div class="input-box"></div> <span class="icon profile-icon">&#x1F464;</span> </div>
+            <span class="icon">&#x1F514;</span> 
+            <div class="input-box"></div>
+            <div class="input-box"></div>
+            <span class="icon profile-icon">&#x1F464;</span>
+        </div>
     </div>
     
     <div class="content">
+
+
+
         <div class="form-card">
             
             <h2>Input Data Sampah</h2>
 
-            <form>
+            <form action="/petugas/kelolaDataSampah" method="POST">
+                @csrf
                 
                 <input type="text" placeholder="Input Data 1">
 

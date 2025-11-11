@@ -200,50 +200,8 @@
                         <td><div class="data-cell-box"></div></td>
                         <td><div class="data-cell-box"></div></td>
                         <td>
-                            <span class="action-icon">&#x270E;</span> <span class="action-icon">&#x1F5D1;</span> </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><div class="data-cell-box"></div></td>
-                        <td><div class="data-cell-box"></div></td>
-                        <td><div class="data-cell-box"></div></td>
-                        <td><div class="data-cell-box"></div></td>
-                        <td>
-                            <span class="action-icon">&#x270E;</span>
-                            <span class="action-icon">&#x1F5D1;</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td><div class="data-cell-box"></div></td>
-                        <td><div class="data-cell-box"></div></td>
-                        <td><div class="data-cell-box"></div></td>
-                        <td><div class="data-cell-box"></div></td>
-                        <td>
-                            <span class="action-icon">&#x270E;</span>
-                            <span class="action-icon">&#x1F5D1;</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td><div class="data-cell-box"></div></td>
-                        <td><div class="data-cell-box"></div></td>
-                        <td><div class="data-cell-box"></div></td>
-                        <td><div class="data-cell-box"></div></td>
-                        <td>
-                            <span class="action-icon">&#x270E;</span>
-                            <span class="action-icon">&#x1F5D1;</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td><div class="data-cell-box"></div></td>
-                        <td><div class="data-cell-box"></div></td>
-                        <td><div class="data-cell-box"></div></td>
-                        <td><div class="data-cell-box"></div></td>
-                        <td>
-                            <span class="action-icon">&#x270E;</span>
-                            <span class="action-icon">&#x1F5D1;</span>
+                            <a class="action-icon" href="/petugas/dataSampah">&#x270E;</a>
+                            <a class="action-icon" href="#">&#x1F5D1;</a>
                         </td>
                     </tr>
                 </tbody>

@@ -59,7 +59,6 @@
         }
         .header-item {
             margin-left: 15px;
-            text-decoration: none;
         }
         .icon {
             font-size: 20px;
@@ -163,7 +162,7 @@
         }
         .next-page-icon {
             text-decoration: none;
-            font-size: 40px;
+            font-size: 18px;
             cursor: pointer;
             color: #333;
         }
@@ -221,11 +220,42 @@
                     <span class="item-number">5</span>
                     <span class="item-data"></span>
                 </div>
+                <div class="list-item">
+                    <span class="item-number">5</span>
+                    <span class="item-data"></span>
+                </div>
+                <div class="list-item">
+                    <span class="item-number">5</span>
+                    <span class="item-data"></span>
+                </div>
+                <div class="list-item">
+                    <span class="item-number">5</span>
+                    <span class="item-data"></span>
+                </div>
+                <div class="list-item">
+                    <span class="item-number">5</span>
+                    <span class="item-data"></span>
+                </div>
+                <div class="list-item">
+                    <span class="item-number">5</span>
+                    <span class="item-data"></span>
+                </div>
+                <div class="list-item">
+                    <span class="item-number">5</span>
+                    <span class="item-data"></span>
+                </div>
+                <div class="list-item">
+                    <span class="item-number">5</span>
+                    <span class="item-data"></span>
+                </div>
+                <div class="list-item">
+                    <span class="item-number">5</span>
+                    <span class="item-data"></span>
+                </div>
             </div>
-
             <div class="bottom-nav">
-                <a class="next-page-icon" href="/warga/listlaporan">&#x2192;</a>
-                {{-- <span class="next-page-icon">&#x2192;</span> --}}
+                <a class="next-page-icon" href="/warga/dashboard">Kembali</a>
+                {{-- <span class="sidebar-btn">Kembali</span> --}}
             </div>
 
         </div>

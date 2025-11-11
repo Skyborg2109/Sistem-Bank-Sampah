@@ -134,22 +134,24 @@
     </style>
 </head>
 <body>
-    
-    <div class="sidebar">
-        <div class="sidebar-item top-left-box"></div> <div class="sidebar-item">&#9776;</div> <div class="sidebar-item">&#x2302;</div> <div class="sidebar-item">&#x1F465;</div> <div class="sidebar-item">&#x1F4CB;</div> </div>
+    {{--  --}}
 
     <div class="main-content">
         
         <div class="header">
-            <span class="header-item icon">&#x1F514;</span> <div class="header-item input-box"></div> <div class="header-item input-box"></div> <span class="header-item profile-icon">&#x1F464;</span> </div>
+            <span class="header-item icon">&#x1F514;</span>
+            <div class="header-item input-box"></div>
+            <div class="header-item input-box"></div> 
+            <a href="/" class="header-item profile-icon">&#x1F464;</a>
+        </div>
 
         <div class="page-body">
             <div class="form-card">
                 
                 <h2>Laporan Bank Sampah</h2>
 
-                <form>
-                    
+                <form action="/warga/dashboard" method="post">
+                    @csrf
                     <input type="text" placeholder="Input Data 1">
 
                     <input type="text" placeholder="Input Data 2">
