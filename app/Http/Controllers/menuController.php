@@ -21,17 +21,23 @@ class menuController extends Controller
     public function adminDashboard(){
         return view('admin/index');
     }
-    public function kelolaDataSampah(){
+    public function AdminkelolaDataSampah(){
         return view('admin/kelolaDataSampah');
     }
-    public function dataSampah(){
+    public function AdmindataSampah(){
         return view('admin/dataSampah');
     }
-    public function kirimDataSampah(){
+    public function AdminkirimDataSampah(){
         return view('admin/kirimDataSampah');
     }
-    public function summary(){
+    public function dataPengguna(){
+        return view('admin/dataPengguna');
+    }
+    public function adminSummary(){
         return view('admin/summary');
+    }
+    public function adminLaporan(){
+        return view('admin/laporan');
     }
 
     //petugas

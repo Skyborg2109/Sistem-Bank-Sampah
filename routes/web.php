@@ -11,11 +11,14 @@ Route::get('/Daftar', [menuController::class, 'Daftar']);
 //admin
 Route::post('Admin/dashboard', [menuController::class, 'adminDashboard']);
 Route::get('/Admin/dashboard', [menuController::class, 'adminDashboard']);
-Route::post('/Admin/kelolaDataSampah', [menuController::class, 'kelolaDataSampah']);
-Route::get('Admin/kelolaDataSampah', [menuController::class, 'kelolaDataSampah']);
+Route::post('/Admin/kelolaDataSampah', [menuController::class, 'AdminkelolaDataSampah']);
+Route::get('Admin/kelolaDataSampah', [menuController::class, 'AdminkelolaDataSampah']);
 Route::get('/Admin/dataSampah', [menuController::class, 'dataSampah']);
 Route::post('/Admin/kirimDataSampah', [menuController::class, 'kirimDataSampah']);
-Route::get('/Admin/summary', [menuController::class, 'summary']);
+Route::post('Admin/dataPengguna', [menuController::class, 'dataPengguna']);
+Route::get('/Admin/dataPengguna', [menuController::class, 'dataPengguna']);
+Route::get('/Admin/summary', [menuController::class, 'AdminSummary']);
+Route::get('/Admin/AdminLaporan', [menuController::class, 'adminLaporan']);
 
 //petugas
 Route::post('petugas/dashboard', [menuController::class, 'petugasDashboard']);

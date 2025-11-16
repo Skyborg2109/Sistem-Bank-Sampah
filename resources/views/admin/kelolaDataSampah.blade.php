@@ -3,213 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelola Data Sampah</title>
+    <title>Form Data Sampah</title>
+    {{-- Saya asumsikan Anda menggunakan Tailwind CSS untuk styling minimal --}}
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Pengaturan Dasar */
-        *{
-            text-decoration: none;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            display: flex;
-        }
-
-        /* Navigasi Samping (Sidebar) */
+        /* Gaya tambahan untuk sidebar dan layout sederhana */
         .sidebar {
-            width: 60px;
-            background-color: #fff;
-            padding: 10px 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border-right: 1px solid #ccc;
-            height: 100vh; /* Tinggi penuh layar */
+            width: 64px;
         }
-        .sidebar-item {
-            font-size: 24px;
-            margin: 15px 0;
-            cursor: pointer;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .top-left-box {
-            border: 1px solid #333;
-            margin-bottom: 25px;
-        }
-
-        /* Konten Utama */
         .main-content {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Header Atas */
-        .header {
-            display: flex;
-            justify-content: flex-end; /* Hanya bagian kanan yang penting di sini */
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #fff;
-            border-bottom: 1px solid #ccc;
-        }
-        .header-item {
-            margin-left: 15px;
-        }
-        .icon {
-            font-size: 20px;
-        }
-        .input-box {
-            width: 100px;
-            height: 25px;
-            border: 1px solid #ccc;
-        }
-        .profile-icon {
-            font-size: 24px;
-        }
-
-        /* Body Halaman */
-        .page-body {
-            padding: 30px;
-        }
-        h2 {
-            text-align: center;
-            margin-top: 0;
-            margin-bottom: 30px;
-        }
-        
-        /* Kontrol (Tombol dan Pencarian) */
-        .controls {
-            display: flex;
-            flex-direction: column; /* Mengatur item secara vertikal */
-            align-items: flex-start;
-            margin-bottom: 25px;
-        }
-        .add-button {
-            padding: 5px 10px;
-            border: 1px solid #ccc;
-            background-color: #fff;
-            cursor: pointer;
-            margin-bottom: 15px;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-        }
-        .search-input {
-            padding: 10px 15px;
-            width: 98%;
-            max-width: 600px;
-            border: 1px solid #ccc;
-            height: 40px;
-            /* Simulasi Ikon Pencarian */
-            padding-left: 40px; 
-            background: #fff url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM9.5 14C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="%23888888"/></svg>') no-repeat 10px center;
-            background-size: 20px 20px;
-        }
-
-        /* Tabel Data */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        th, td {
-            padding: 8px 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #eee;
-            text-transform: uppercase;
-        }
-        td:nth-child(1) {
-            width: 40px; /* Kolom No */
-            text-align: center;
-        }
-        td:last-child {
-            width: 120px; /* Kolom Aksi */
-            text-align: center;
-        }
-        .data-cell-box {
-            height: 20px; 
-            border: 1px solid #ccc;
-            margin: 5px 0;
-        }
-        .action-icon {
-            display: inline-block;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            border: 1px solid #333;
-            text-align: center;
-            line-height: 25px;
-            margin: 0 5px;
-            cursor: pointer;
-            font-size: 14px;
+            margin-left: 64px;
         }
     </style>
 </head>
-<body>
-    
-<div class="sidebar">
-    <div class="sidebar-item top-left-box"></div>
-    <a href="/petugas/kelolaDataSampah" class="sidebar-item" title="Home">&#x1F5D1;</a> 
-    <a href="/petugas/summary" class="sidebar-item" title="Histori">&#x1F550;</a> 
-</div>
+<body class="bg-gray-100">
 
-    <div class="main-content">
-        
-        <div class="header">
-            <span class="header-item icon">&#x1F514;</span> <div class="header-item input-box"></div> <div class="header-item input-box"></div> <a href="/" class="header-item profile-icon">&#x1F464;</a> </div>
+    {{-- Layout Sederhana --}}
+    <div class="flex h-screen">
 
-        <div class="page-body">
-            
-            <h2>Kelola Data Sampah</h2>
-
-            <form action="/petugas/dashboard" method="post">
-                @csrf
-                <div class="controls">
-                    <button type="submit" class="add-button">
-                        <span style="font-size: 18px; margin-right: 5px;">+</span> 
-                        <span>Tambah Sampah</span>
-                    </button>
-                </form>
-                
-                <input type="text" class="search-input" placeholder="Temukan Data Sampah">
+        {{-- Sidebar (Menu Samping) - Dipertahankan dari tampilan sebelumnya --}}
+        <div class="sidebar fixed h-full bg-white shadow-xl flex flex-col items-center py-4">
+            <div class="w-8 h-8 border border-gray-400 mb-8 flex items-center justify-center text-gray-500">
+                {{-- Placeholder untuk Ikon Menu --}}
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
             </div>
+            <a href="/Admin/dashboard" class="p-2 mb-4 hover:bg-gray-200 rounded">
+                {{-- Placeholder untuk Ikon Beranda --}}
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12l8.955-8.955c.421-.421 1.1-.421 1.522 0l8.955 8.955A.75.75 0 0121 12.75H3a.75.75 0 01-.75-.75z" />
+                </svg>
+            </a>
+            <a href="/Admin/dataPengguna" class="p-2 mb-4 hover:bg-gray-200 rounded">
+                {{-- Placeholder untuk Ikon Anggota/Grup --}}
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.5z" />
+                </svg>
+            </a>
+            <a href="#" class="p-2 hover:bg-gray-200 rounded">
+                {{-- Placeholder untuk Ikon Pengguna --}}
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0z" />
+                </svg>
+            </a>
+        </div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>text</th>
-                        <th>text</th>
-                        <th>text</th>
-                        <th>text</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td><div class="data-cell-box"></div></td>
-                        <td><div class="data-cell-box"></div></td>
-                        <td><div class="data-cell-box"></div></td>
-                        <td><div class="data-cell-box"></div></td>
-                        <td>
-                            <a class="action-icon" href="/petugas/dataSampah">&#x270E;</a>
-                            <a class="action-icon" href="#">&#x1F5D1;</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        {{-- Konten Utama --}}
+        <div class="main-content flex-1 p-6 transition-all duration-300">
+            
+            {{-- Header/Navbar Atas - Dipertahankan dari tampilan sebelumnya --}}
+            <header class="flex justify-end items-center bg-white p-4 shadow-sm rounded mb-6">
+                {{-- Placeholder untuk Kotak Notifikasi --}}
+                <div class="w-8 h-8 border border-gray-300 rounded-full mr-4 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.47-2.31 4.755 4.755 0 00-4.646-7.85z" />
+                    </svg>
+                </div>
+                {{-- Placeholder untuk Kotak Input --}}
+                <input type="text" class="px-3 py-1 border border-gray-300 rounded-md mr-4" placeholder="Input">
+                {{-- Placeholder untuk Kotak Input --}}
+                <input type="text" class="px-3 py-1 border border-gray-300 rounded-md mr-4" placeholder="Input">
+                {{-- Placeholder untuk Profil Pengguna --}}
+                <div class="w-8 h-8 border border-gray-300 rounded-full"></div>
+            </header>
+
+            {{-- Form Konten --}}
+            <div class="bg-white shadow-md rounded-lg p-8 max-w-2xl mx-auto">
+                <h1 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Data sampah</h1>
+                
+                <form action="/Admin/dashboard" method="POST">
+                    @csrf 
+                    {{-- Input 1 (Baris Penuh) --}}
+                    <div class="mb-4">
+                        <input type="text" class="w-full px-4 py-2 border border-gray-400 rounded-md focus:outline-none" placeholder="Input Data 1">
+                    </div>
+
+                    {{-- Input 2 (Baris Penuh) --}}
+                    <div class="mb-4">
+                        <input type="text" class="w-full px-4 py-2 border border-gray-400 rounded-md focus:outline-none" placeholder="Input Data 2">
+                    </div>
+                    
+                    {{-- Input 3 & Select (Satu Baris dibagi Dua) --}}
+                    <div class="flex mb-4 space-x-4">
+                        {{-- Dropdown (Select) --}}
+                        <div class="w-1/3">
+                            <select class="w-full px-4 py-2 border border-gray-400 rounded-md bg-white focus:outline-none">
+                                <option value="" disabled selected>Pilih Opsi</option>
+                                <option value="opsi1">Opsi 1</option>
+                                <option value="opsi2">Opsi 2</option>
+                            </select>
+                        </div>
+                        
+                        {{-- Input 4 --}}
+                        <div class="w-2/3">
+                            <input type="text" class="w-full px-4 py-2 border border-gray-400 rounded-md focus:outline-none" placeholder="Input Data 4">
+                        </div>
+                    </div>
+
+                    {{-- Textarea (Baris Penuh dan Lebih Besar) --}}
+                    <div class="mb-6">
+                        <textarea rows="6" class="w-full px-4 py-2 border border-gray-400 rounded-md focus:outline-none resize-none" placeholder="Area Input Deskripsi / Catatan"></textarea>
+                    </div>
+
+                    {{-- Tombol Aksi --}}
+                    <div class="flex justify-between items-center">
+                        {{-- Tombol Edit --}}
+                        <button type="submit" class="px-6 py-2 bg-gray-200 border border-gray-400 text-gray-800 rounded-md font-medium hover:bg-gray-300 focus:outline-none">
+                            Edit
+                        </button>
+                        
+                        {{-- Tombol Kembali --}}
+                        <a href="/Admin/dashboard" class="px-6 py-2 bg-gray-200 border border-gray-400 text-gray-800 rounded-md font-medium hover:bg-gray-300 focus:outline-none">
+                            Kembali
+                        </a>
+                    </div>
+                </form>
+            </div>
 
         </div>
     </div>

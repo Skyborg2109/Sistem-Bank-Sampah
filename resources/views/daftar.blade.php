@@ -112,9 +112,9 @@
     </div>
 
     
-    {{-- <form action="Admin/dashboard" method="POST"> --}}
-    <form action="warga/dashboard" method="POST"> --}}
-    {{-- <form action="petugas/dashboard" method="POST"> 
+   <form action="Admin/dashboard" method="POST"> 
+    <!-- <form action="warga/dashboard" method="POST">  -->
+<!-- <form action="petugas/dashboard" method="POST">  -->
         @csrf
         <table>
             <tr>
