@@ -7,6 +7,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController; // Tambahkan import
+use Illuminate\Support\Facades\Artisan;
 
 /* ======================================================
 | AUTH
@@ -105,4 +106,25 @@ Route::middleware(['role:Warga'])->group(function () {
     Route::get('/warga/laporan/create', [MenuController::class, 'wargaLaporanCreate']);
     Route::post('/warga/laporan', [MenuController::class, 'wargaLaporanStore']);
 
+});
+
+/* ======================================================
+| FALLBACK: RUN MIGRATION VIA URL (RAILWAY HACK)
+====================================================== */
+Route::get('/run-migration', function () {
+    try {
+        Artisan::call('migrate', ['--force' => true]);
+        Artisan::call('db:seed', ['--force' => true]); // Memasukkan akun admin & petugas awal
+        
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Migration and seeding completed successfully!',
+            'output' => Artisan::output()
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => $e->getMessage()
+        ], 500);
+    }
 });
