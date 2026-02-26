@@ -339,7 +339,7 @@ public function adminUpdateDataSampah(Request $request, $id)
             ->distinct()
             ->get();
 
-        return view('Warga.laporan', compact('jenisSampah'));
+        return view('warga.laporan', compact('jenisSampah'));
     }
 
     public function wargaLaporanCreate()
