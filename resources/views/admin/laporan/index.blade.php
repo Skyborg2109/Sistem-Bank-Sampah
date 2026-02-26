@@ -30,12 +30,44 @@
     <div class="mb-6 flex items-center justify-between">
         <div class="flex items-center space-x-3">
             {{-- Filter Buttons --}}
-            <button class="px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition flex items-center space-x-2">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 01-.659 1.591l-5.432 5.432a2.25 2.25 0 00-.659 1.591v2.927a2.25 2.25 0 01-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 00-.659-1.591L3.659 7.409A2.25 2.25 0 013 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0112 3z" />
-                </svg>
-                <span>Filter</span>
-            </button>
+            {{-- Filter Dropdown --}}
+            <div class="relative">
+                <select id="filterSelect" class="appearance-none pl-10 pr-8 py-2 bg-white border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition focus:outline-none focus:ring-2 focus:ring-purple-500 cursor-pointer">
+                    <option value="">Semua Filter</option>
+                    <option value="Plastik">Plastik</option>
+                    <option value="Kertas">Kertas</option>
+                    <option value="Kaca">Kaca</option>
+                    <option value="Logam">Logam</option>
+                    <option value="Organik">Organik</option>
+                </select>
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 text-gray-500">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 01-.659 1.591l-5.432 5.432a2.25 2.25 0 00-.659 1.591v2.927a2.25 2.25 0 01-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 00-.659-1.591L3.659 7.409A2.25 2.25 0 013 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0112 3z" />
+                    </svg>
+                </div>
+                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+            </div>
+            
+            {{-- Sort Dropdown --}}
+            <div class="relative">
+                <select id="sortSelect" class="appearance-none pl-10 pr-8 py-2 bg-white border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition focus:outline-none focus:ring-2 focus:ring-purple-500 cursor-pointer">
+                    <option value="default">Urutkan</option>
+                    <option value="terbaru">Terbaru</option>
+                    <option value="terlama">Terlama</option>
+                    <option value="terberat">Terberat</option>
+                    <option value="teringan">Teringan</option>
+                </select>
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 text-gray-500">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 7.5L7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5" />
+                    </svg>
+                </div>
+                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+            </div>
             {{-- Print Button --}}
             <a href="/Admin/laporan/cetak" target="_blank" class="px-4 py-2 bg-indigo-600 border border-transparent rounded-lg text-sm font-medium text-white hover:bg-indigo-700 transition flex items-center space-x-2 shadow-sm">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
@@ -115,7 +147,7 @@
                                     <span class="ml-1 text-xs text-gray-500">Kg</span>
                                 </div>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600" data-date="{{ \Carbon\Carbon::parse($item->tanggal)->timestamp }}">
                                 <div class="flex items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 mr-2 text-gray-400">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
@@ -240,20 +272,53 @@
 
 @push('scripts')
 <script>
-    // Search functionality
-    document.getElementById('searchInput').addEventListener('keyup', function() {
-        const searchValue = this.value.toLowerCase();
-        const tableRows = document.querySelectorAll('#tableBody tr');
+    document.getElementById('searchInput').addEventListener('keyup', handleFilter);
+    document.getElementById('filterSelect').addEventListener('change', handleFilter);
+    document.getElementById('sortSelect').addEventListener('change', handleSort);
+
+    function handleFilter() {
+        const searchValue = document.getElementById('searchInput').value.toLowerCase();
+        const filterValue = document.getElementById('filterSelect').value.toLowerCase();
+        const tableRows = document.querySelectorAll('#tableBody .table-row');
         
         tableRows.forEach(row => {
             const text = row.textContent.toLowerCase();
-            if (text.includes(searchValue)) {
+            const typeText = row.querySelector('td:nth-child(3)').textContent.toLowerCase(); // Kolom Jenis Sampah
+
+            const matchesSearch = text.includes(searchValue);
+            const matchesFilter = filterValue === "" || typeText.includes(filterValue);
+
+            if (matchesSearch && matchesFilter) {
                 row.style.display = '';
             } else {
                 row.style.display = 'none';
             }
         });
-    });
+    }
+
+    function handleSort() {
+        const sortValue = document.getElementById('sortSelect').value;
+        const tbody = document.getElementById('tableBody');
+        const rows = Array.from(tbody.querySelectorAll('.table-row'));
+
+        if (sortValue === 'default') return;
+
+        rows.sort((a, b) => {
+            if (sortValue === 'terbaru' || sortValue === 'terlama') {
+                const dateA = parseInt(a.querySelector('td:nth-child(5)').getAttribute('data-date'));
+                const dateB = parseInt(b.querySelector('td:nth-child(5)').getAttribute('data-date'));
+                return sortValue === 'terbaru' ? dateB - dateA : dateA - dateB;
+            } else if (sortValue === 'terberat' || sortValue === 'teringan') {
+                const wA = parseFloat(a.querySelector('td:nth-child(4)').textContent.replace(/[^0-9.]/g, ''));
+                const wB = parseFloat(b.querySelector('td:nth-child(4)').textContent.replace(/[^0-9.]/g, ''));
+                return sortValue === 'terberat' ? wB - wA : wA - wB;
+            }
+            return 0;
+        });
+
+        // Kosongkan dan re-append baris yang sudah diurutkan (mempertahankan baris kosong jika ada)
+        rows.forEach(row => tbody.appendChild(row));
+    }
 
     // Modal functions
     function showDetail(nama, jenis, berat, tanggal, keterangan) {
