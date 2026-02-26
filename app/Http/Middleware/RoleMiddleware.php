@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
+class RoleMiddleware
+{
+    public function handle(Request $request, Closure $next, $role)
+    {
+        if (!Session::has('login')) {
+            return redirect('/')->with('error', 'Silakan login terlebih dahulu');
+        }
+
+        if (Session::get('role') !== $role) {
+            return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman ini');
+        }
+
+        return $next($request);
+    }
+}

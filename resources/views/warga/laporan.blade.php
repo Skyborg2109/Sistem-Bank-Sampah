@@ -1,178 +1,146 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Bank Sampah</title>
-    <style>
-        /* Pengaturan Dasar */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            display: flex;
-        }
+@extends('layouts.warga')
 
-        /* Navigasi Samping (Sidebar) - Konsisten dengan halaman sebelumnya */
-        .sidebar {
-            width: 60px; 
-            background-color: #fff;
-            padding: 10px 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border-right: 1px solid #ccc;
-            height: 100vh;
-        }
-        .sidebar-item {
-            font-size: 24px;
-            margin: 15px 0;
-            cursor: pointer;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .top-left-box {
-            border: 1px solid #333;
-            margin-bottom: 25px;
-        }
+@section('title', 'Laporan Sampah')
 
-        /* Konten Utama */
-        .main-content {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
+@section('content')
+<h1 class="page-title">Laporan Bank Sampah</h1>
 
-        /* Header Atas */
-        .header {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #fff;
-            border-bottom: 1px solid #ccc;
-        }
-        .header-item {
-            margin-left: 15px;
-        }
-        .icon {
-            font-size: 20px;
-        }
-        .input-box {
-            width: 100px;
-            height: 25px;
-            border: 1px solid #ccc;
-        }
-        .profile-icon {
-            font-size: 24px;
-        }
-
-        /* Body Halaman dan Kartu Formulir */
-        .page-body {
-            display: flex;
-            justify-content: center;
-            padding: 40px 20px;
-        }
-        .form-card {
-            background-color: #fff;
-            padding: 30px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 600px;
-        }
-        h2 {
-            text-align: center;
-            margin-top: 0;
-            margin-bottom: 30px;
-        }
+<div style="max-width: 600px; margin: 0 auto;">
+    <div style="background: white; padding: 30px; border-radius: 4px; border: 1px solid #e0e0e0;">
         
-        /* Formulir */
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-        input[type="text"], textarea {
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            height: 40px;
-        }
-        textarea {
-            height: 150px;
-            resize: vertical;
-            margin-bottom: 40px;
-        }
-        .row-group {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        .row-group input[type="text"] {
-            flex-grow: 1;
-            width: 100%;
-            margin-bottom: 0;
-        }
-        
-        /* Tombol Cetak */
-        .button-wrapper {
-            display: flex;
-            justify-content: flex-end;
-        }
-        button {
-            padding: 10px 20px;
-            border: 1px solid #ccc;
-            cursor: pointer;
-            font-size: 16px;
-            background-color: #f0f0f0;
-            display: flex;
-            align-items: center;
-        }
-    </style>
-</head>
-<body>
-    {{--  --}}
-
-    <div class="main-content">
-        
-        <div class="header">
-            <span class="header-item icon">&#x1F514;</span>
-            <div class="header-item input-box"></div>
-            <div class="header-item input-box"></div> 
-            <a href="/" class="header-item profile-icon">&#x1F464;</a>
-        </div>
-
-        <div class="page-body">
-            <div class="form-card">
-                
-                <h2>Laporan Bank Sampah</h2>
-
-                <form action="/warga/dashboard" method="post">
-                    @csrf
-                    <input type="text" placeholder="Input Data 1">
-
-                    <input type="text" placeholder="Input Data 2">
-
-                    <div class="row-group">
-                        <input type="text" placeholder="Input Data 3">
-                        <input type="text" placeholder="Input Data 4">
-                    </div>
-
-                    <textarea placeholder="Hasil Laporan / Pratinjau"></textarea>
-
-                    <div class="button-wrapper">
-                        <button type="submit" style="background-color: #007bff; color: white; border: none;">
-                            <span style="margin-right: 5px;">&#x1F5A8;</span> <span>Cetak</span>
-                        </button>
-                    </div>
-                </form>
-
+        <form action="/warga/laporan" method="POST">
+            @csrf
+            
+            <div class="form-group">
+                <label class="form-label">Nama Warga</label>
+                <input type="text" class="form-input" value="{{ session('username') }}" readonly style="background: #f5f5f5;">
             </div>
-        </div>
+
+            <div class="form-group">
+                <label class="form-label">Jenis Sampah</label>
+                <select name="jenis_sampah" class="form-select" required>
+                    <option value="">Pilih Jenis Sampah</option>
+                    @if(isset($jenisSampah))
+                        @foreach($jenisSampah as $js)
+                            <option value="{{ $js->jenis_sampah }}" {{ old('jenis_sampah') == $js->jenis_sampah ? 'selected' : '' }}>
+                                {{ $js->jenis_sampah }}
+                            </option>
+                        @endforeach
+                    @else
+                        <option value="Plastik">Plastik</option>
+                        <option value="Kertas">Kertas</option>
+                        <option value="Logam">Logam</option>
+                        <option value="Kaca">Kaca</option>
+                        <option value="Organik">Organik</option>
+                    @endif
+                </select>
+                @error('jenis_sampah')
+                    <div class="error-message">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Berat Sampah (Kg)</label>
+                <input type="number" step="0.01" name="berat" class="form-input" placeholder="Contoh: 2.5" value="{{ old('berat') }}" required>
+                @error('berat')
+                    <div class="error-message">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Keterangan (Opsional)</label>
+                <textarea name="keterangan" class="form-textarea" placeholder="Tambahkan keterangan jika diperlukan">{{ old('keterangan') }}</textarea>
+                @error('keterangan')
+                    <div class="error-message">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 30px;">
+                <a href="/Warga" class="btn">Kembali</a>
+                <button type="submit" class="btn btn-primary">Kirim Laporan</button>
+            </div>
+        </form>
+
     </div>
 
-</body>
-</html>
+    <!-- Riwayat Laporan -->
+    @if(isset($laporan) && $laporan->count() > 0)
+    <div style="margin-top: 30px;">
+        <h3 style="margin-bottom: 15px; color: #333;">Riwayat Laporan Anda</h3>
+        <div class="item-list">
+            @foreach($laporan->take(5) as $index => $item)
+                <div class="list-item">
+                    <span class="item-number">{{ $index + 1 }}</span>
+                    <div class="item-data">
+                        <div class="item-detail">
+                            <div>
+                                <span class="item-label">Jenis:</span>
+                                <span class="item-value">{{ $item->jenis_sampah }}</span>
+                            </div>
+                            <div>
+                                <span class="item-label">Berat:</span>
+                                <span class="item-value">{{ number_format($item->berat, 2) }} Kg</span>
+                            </div>
+                            <div>
+                                <span class="item-label">Tanggal:</span>
+                                <span class="item-value">{{ \Carbon\Carbon::parse($item->tanggal)->format('d/m/Y H:i') }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        @if($laporan->count() > 5)
+        <div style="text-align: center; margin-top: 15px;">
+            <a href="/Warga" class="btn">Lihat Semua Laporan</a>
+        </div>
+        @endif
+    </div>
+    @endif
+</div>
+
+@endsection
+
+@push('styles')
+<style>
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #333;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    .form-textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+        outline: none;
+        border-color: #4CAF50;
+    }
+
+    .error-message {
+        color: #dc3545;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+</style>
+@endpush

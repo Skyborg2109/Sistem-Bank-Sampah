@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laporan Bank Sampah</title>
-    {{-- Memuat Tailwind CDN untuk memastikan styling SVG yang Anda gunakan berfungsi --}}
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Pengaturan Dasar */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -16,9 +14,8 @@
             display: flex;
         }
 
-        /* --- Style Sidebar Ikon (64px) --- */
         .sidebar {
-            width: 64px; /* Lebar sidebar minimalis ikon */
+            width: 64px;
             background-color: #fff;
             padding: 10px 0;
             display: flex;
@@ -29,7 +26,7 @@
             position: fixed;
         }
         .sidebar a {
-            padding: 8px; /* Padding untuk area klik */
+            padding: 8px;
             margin: 10px 0;
             border-radius: 4px;
             display: flex;
@@ -51,16 +48,14 @@
             justify-content: center;
         }
 
-        /* Konten Utama - Menyesuaikan margin dengan lebar sidebar (64px) */
         .main-content {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            margin-left: 64px; /* Diatur agar konten dimulai setelah sidebar */
+            margin-left: 64px;
             width: calc(100% - 64px);
         }
 
-        /* Header Atas */
         .header {
             display: flex;
             justify-content: flex-end;
@@ -85,7 +80,6 @@
             border: 1px solid #ccc;
         }
 
-        /* Body Halaman */
         .page-body {
             padding: 30px;
             max-width: 800px;
@@ -101,14 +95,13 @@
             color: #333;
         }
 
-        /* Form Laporan */
         .report-form-container {
             background-color: #fff;
             padding: 40px;
             border: 1px solid #ccc;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            position: relative; /* Untuk penempatan tombol cetak */
+            position: relative;
         }
         .form-input-full {
             width: 100%;
@@ -117,7 +110,7 @@
             margin-bottom: 20px;
         }
         .form-input-half {
-            width: 48%; /* Hampir setengah, menyisakan jarak */
+            width: 48%;
             height: 40px;
             border: 1px solid #ccc;
         }
@@ -128,7 +121,7 @@
         }
         .form-textarea {
             width: 100%;
-            height: 200px; /* Lebih besar dari input biasa */
+            height: 200px; 
             border: 1px solid #ccc;
             margin-bottom: 40px;
             resize: none;
@@ -151,8 +144,6 @@
     </style>
 </head>
 <body>
-    
-    {{-- SIDEBAR IKON (Konsisten dengan Kelola Data Sampah) --}}
     <div class="sidebar">
         <div class="top-left-box">
              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -173,13 +164,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.5z" />
             </svg>
         </a>
-        
-        {{-- Ikon Pengguna (Kelola Akun) --}}
-        <a href="/Admin/kelolaAkun" class="p-2" title="Kelola Akun">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0z" />
-            </svg>
-        </a>
+       
     </div>
 
     <div class="main-content">

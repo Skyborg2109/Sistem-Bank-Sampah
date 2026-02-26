@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/x-icon">
+    <link rel="icon" href="<?php echo e(asset('images/logo.png')); ?>" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title>Login - Bank Sampah</title>
 
@@ -153,23 +153,25 @@
     <h3>Bank Sampah Induk Turikale</h3>
 
     <div class="logo-container">
-        <img src="{{ asset('images/logo.png') }}?v={{ time() }}" alt="Bank Sampah Logo">
+        <img src="<?php echo e(asset('images/logo.png')); ?>?v=<?php echo e(time()); ?>" alt="Bank Sampah Logo">
     </div>
 
-    @if(session('success'))
+    <?php if(session('success')): ?>
         <div class="success-message">
-            {{ session('success') }}
-        </div>
-    @endif
+            <?php echo e(session('success')); ?>
 
-    @if(session('error'))
+        </div>
+    <?php endif; ?>
+
+    <?php if(session('error')): ?>
         <div class="error-message">
-            {{ session('error') }}
-        </div>
-    @endif
+            <?php echo e(session('error')); ?>
 
-    <form action="{{ url('/prosesLogin') }}" method="POST">
-        @csrf
+        </div>
+    <?php endif; ?>
+
+    <form action="<?php echo e(url('/prosesLogin')); ?>" method="POST">
+        <?php echo csrf_field(); ?>
 
         <div class="form-group">
             <label for="username">Username</label>
@@ -178,11 +180,18 @@
                        id="username"
                        name="username"
                        placeholder="Masukkan username"
-                       value="{{ old('username') }}"
+                       value="<?php echo e(old('username')); ?>"
                        style="width: 100%; box-sizing: border-box;">
-                @error('username')
-                    <div style="color: #d8000c; font-size: 12px; margin-top: 5px;">{{ $message }}</div>
-                @enderror
+                <?php $__errorArgs = ['username'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                    <div style="color: #d8000c; font-size: 12px; margin-top: 5px;"><?php echo e($message); ?></div>
+                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
             </div>
         </div>
 
@@ -197,9 +206,16 @@
                 <span id="togglePassword" style="position: absolute; right: 10px; top: 12px; cursor: pointer;">
                     <i class="fa fa-eye" style="color: #666;"></i>
                 </span>
-                @error('password')
-                    <div style="color: #d8000c; font-size: 12px; margin-top: 5px;">{{ $message }}</div>
-                @enderror
+                <?php $__errorArgs = ['password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                    <div style="color: #d8000c; font-size: 12px; margin-top: 5px;"><?php echo e($message); ?></div>
+                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
             </div>
         </div>
 
@@ -207,21 +223,28 @@
             <label for="role">Login Sebagai</label>
             <div style="flex: 1;">
                 <select id="role" name="role" style="width: 100%; padding: 12px 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; box-sizing: border-box; background-color: white;">
-                    <option value="" disabled {{ old('role') ? '' : 'selected' }}>Pilih Peran Login</option>
-                    <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
-                    <option value="petugas" {{ old('role') == 'petugas' ? 'selected' : '' }}>Petugas</option>
-                    <option value="Warga" {{ old('role') == 'Warga' ? 'selected' : '' }}>Warga</option>
+                    <option value="" disabled <?php echo e(old('role') ? '' : 'selected'); ?>>Pilih Peran Login</option>
+                    <option value="admin" <?php echo e(old('role') == 'admin' ? 'selected' : ''); ?>>Admin</option>
+                    <option value="petugas" <?php echo e(old('role') == 'petugas' ? 'selected' : ''); ?>>Petugas</option>
+                    <option value="Warga" <?php echo e(old('role') == 'Warga' ? 'selected' : ''); ?>>Warga</option>
                 </select>
-                @error('role')
-                    <div style="color: #d8000c; font-size: 12px; margin-top: 5px;">{{ $message }}</div>
-                @enderror
+                <?php $__errorArgs = ['role'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                    <div style="color: #d8000c; font-size: 12px; margin-top: 5px;"><?php echo e($message); ?></div>
+                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
             </div>
         </div>
 
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
 
-    <a href="{{ url('/daftar') }}" class="register-link">
+    <a href="<?php echo e(url('/daftar')); ?>" class="register-link">
         Belum memiliki akun? Daftar sekarang
     </a>
 
@@ -241,4 +264,4 @@
         });
     </script>
 </body>
-</html>
+</html><?php /**PATH C:\laragon\www\SistemMhs_BankSampah\resources\views/login.blade.php ENDPATH**/ ?>

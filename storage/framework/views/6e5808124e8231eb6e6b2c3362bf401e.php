@@ -1,20 +1,18 @@
-@extends('layouts.admin')
+<?php $__env->startSection('title', 'Dashboard Admin'); ?>
 
-@section('title', 'Dashboard Admin')
-
-@section('topbar-left')
+<?php $__env->startSection('topbar-left'); ?>
     <div class="flex items-center space-x-3">
         <h2 class="text-xl font-semibold text-gray-800">Dashboard</h2>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="animate-slide-in">
-    {{-- Welcome Section --}}
+    
     <div class="mb-8 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl shadow-xl p-8 text-white">
         <div class="flex items-center justify-between">
             <div>
-                <h1 class="text-3xl font-bold mb-2">Selamat Datang, {{ session('username', 'Admin') }}! 👋</h1>
+                <h1 class="text-3xl font-bold mb-2">Selamat Datang, <?php echo e(session('username', 'Admin')); ?>! 👋</h1>
                 <p class="text-purple-100 text-lg">Kelola sistem Bank Sampah dengan mudah dan efisien</p>
             </div>
             <div class="hidden lg:block">
@@ -25,14 +23,14 @@
         </div>
     </div>
 
-    {{-- Stats Cards --}}
+    
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        {{-- Total Data Sampah --}}
+        
         <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-500 hover:shadow-xl transition transform hover:-translate-y-1">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm font-medium text-gray-600 mb-1">Total Data Sampah</p>
-                    <p class="text-3xl font-bold text-gray-900">{{ DB::table('data_sampah')->count() }}</p>
+                    <p class="text-3xl font-bold text-gray-900"><?php echo e(DB::table('data_sampah')->count()); ?></p>
                     <p class="text-xs text-green-600 mt-2">↑ Data terdaftar</p>
                 </div>
                 <div class="p-3 bg-purple-100 rounded-lg">
@@ -43,12 +41,12 @@
             </div>
         </div>
 
-        {{-- Total Pengguna --}}
+        
         <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500 hover:shadow-xl transition transform hover:-translate-y-1">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm font-medium text-gray-600 mb-1">Total Pengguna</p>
-                    <p class="text-3xl font-bold text-gray-900">{{ DB::table('data_user_tabel')->count() }}</p>
+                    <p class="text-3xl font-bold text-gray-900"><?php echo e(DB::table('data_user_tabel')->count()); ?></p>
                     <p class="text-xs text-blue-600 mt-2">↑ Pengguna aktif</p>
                 </div>
                 <div class="p-3 bg-blue-100 rounded-lg">
@@ -59,12 +57,12 @@
             </div>
         </div>
 
-        {{-- Total Laporan --}}
+        
         <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500 hover:shadow-xl transition transform hover:-translate-y-1">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm font-medium text-gray-600 mb-1">Total Laporan</p>
-                    <p class="text-3xl font-bold text-gray-900">{{ DB::table('laporan')->count() }}</p>
+                    <p class="text-3xl font-bold text-gray-900"><?php echo e(DB::table('laporan')->count()); ?></p>
                     <p class="text-xs text-green-600 mt-2">↑ Laporan masuk</p>
                 </div>
                 <div class="p-3 bg-green-100 rounded-lg">
@@ -75,12 +73,12 @@
             </div>
         </div>
 
-        {{-- Total Berat Sampah --}}
+        
         <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-orange-500 hover:shadow-xl transition transform hover:-translate-y-1">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm font-medium text-gray-600 mb-1">Total Berat</p>
-                    <p class="text-3xl font-bold text-gray-900">{{ number_format(DB::table('data_sampah')->sum('berat'), 1) }}</p>
+                    <p class="text-3xl font-bold text-gray-900"><?php echo e(number_format(DB::table('data_sampah')->sum('berat'), 1)); ?></p>
                     <p class="text-xs text-orange-600 mt-2">Kilogram (Kg)</p>
                 </div>
                 <div class="p-3 bg-orange-100 rounded-lg">
@@ -92,9 +90,9 @@
         </div>
     </div>
 
-    {{-- Quick Actions --}}
+    
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        {{-- Quick Links --}}
+        
         <div class="bg-white rounded-xl shadow-lg p-6">
             <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 mr-2 text-purple-600">
@@ -147,7 +145,7 @@
             </div>
         </div>
 
-        {{-- Recent Activity --}}
+        
         <div class="bg-white rounded-xl shadow-lg p-6">
             <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 mr-2 text-purple-600">
@@ -156,28 +154,31 @@
                 Aktivitas Terbaru
             </h3>
             <div class="space-y-4">
-                @php
+                <?php
                     $recentSampah = DB::table('data_sampah')->orderBy('created_at', 'desc')->limit(5)->get();
-                @endphp
-                @forelse($recentSampah as $item)
+                ?>
+                <?php $__empty_1 = true; $__currentLoopData = $recentSampah; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                 <div class="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
                     <div class="flex-shrink-0 w-2 h-2 bg-purple-500 rounded-full mt-2"></div>
                     <div class="flex-1 min-w-0">
                         <p class="text-sm font-medium text-gray-900 truncate">
-                            Data sampah <span class="text-purple-600">{{ $item->jenis_sampah }}</span> ditambahkan
+                            Data sampah <span class="text-purple-600"><?php echo e($item->jenis_sampah); ?></span> ditambahkan
                         </p>
                         <p class="text-xs text-gray-500">
-                            {{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}
+                            <?php echo e(\Carbon\Carbon::parse($item->created_at)->diffForHumans()); ?>
+
                         </p>
                     </div>
                 </div>
-                @empty
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                 <div class="text-center py-8 text-gray-400">
                     <p>Belum ada aktivitas</p>
                 </div>
-                @endforelse
+                <?php endif; ?>
             </div>
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.admin', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\SistemMhs_BankSampah\resources\views/admin/index.blade.php ENDPATH**/ ?>

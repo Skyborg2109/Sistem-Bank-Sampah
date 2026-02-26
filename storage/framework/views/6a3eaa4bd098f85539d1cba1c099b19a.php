@@ -1,9 +1,7 @@
-@extends('layouts.petugas')
+<?php $__env->startSection('title', 'Dashboard Petugas'); ?>
+<?php $__env->startSection('header', 'Overview'); ?>
 
-@section('title', 'Dashboard Petugas')
-@section('header', 'Overview')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="animate-slide-in">
     <!-- Stats Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-8">
@@ -16,7 +14,7 @@
             </div>
             <div>
                 <p class="text-sm font-medium text-gray-500">Total Transaksi</p>
-                <p class="text-2xl font-bold text-gray-800">{{ $totalData }}</p>
+                <p class="text-2xl font-bold text-gray-800"><?php echo e($totalData); ?></p>
             </div>
         </div>
 
@@ -29,7 +27,7 @@
             </div>
             <div>
                 <p class="text-sm font-medium text-gray-500">Total Berat Sampah</p>
-                <p class="text-2xl font-bold text-gray-800">{{ number_format($totalBerat, 2) }} <span class="text-sm text-gray-500 font-normal">Kg</span></p>
+                <p class="text-2xl font-bold text-gray-800"><?php echo e(number_format($totalBerat, 2)); ?> <span class="text-sm text-gray-500 font-normal">Kg</span></p>
             </div>
         </div>
     </div>
@@ -51,33 +49,36 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
-                    @forelse($sampah->take(10) as $s)
+                    <?php $__empty_1 = true; $__currentLoopData = $sampah->take(10); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $s): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                     <tr class="hover:bg-gray-50 transition">
-                        <td class="px-6 py-4 text-gray-500 font-medium">{{ $loop->iteration }}</td>
+                        <td class="px-6 py-4 text-gray-500 font-medium"><?php echo e($loop->iteration); ?></td>
                         <td class="px-6 py-4">
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                {{ $s->jenis_sampah }}
+                                <?php echo e($s->jenis_sampah); ?>
+
                             </span>
                         </td>
-                        <td class="px-6 py-4 font-bold text-gray-800">{{ number_format($s->berat, 2) }}</td>
-                        <td class="px-6 py-4 text-sm text-gray-500">{{ \Carbon\Carbon::parse($s->tanggal)->format('d M Y') }}</td>
+                        <td class="px-6 py-4 font-bold text-gray-800"><?php echo e(number_format($s->berat, 2)); ?></td>
+                        <td class="px-6 py-4 text-sm text-gray-500"><?php echo e(\Carbon\Carbon::parse($s->tanggal)->format('d M Y')); ?></td>
                     </tr>
-                    @empty
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                     <tr>
                         <td colspan="4" class="px-6 py-10 text-center text-gray-400">Belum ada data sampah.</td>
                     </tr>
-                    @endforelse
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>
         
-        @if($sampah->count() > 10)
+        <?php if($sampah->count() > 10): ?>
         <div class="px-6 py-4 border-t border-gray-100 bg-gray-50 flex justify-center">
             <a href="/petugas/datasampah" class="text-sm font-medium text-indigo-600 hover:text-indigo-800">
                 Lihat semua data &rarr;
             </a>
         </div>
-        @endif
+        <?php endif; ?>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.petugas', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\SistemMhs_BankSampah\resources\views/petugas/index.blade.php ENDPATH**/ ?>
